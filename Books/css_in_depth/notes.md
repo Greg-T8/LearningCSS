@@ -1,5 +1,5 @@
 # Notes from CSS in Depth
 
-[Repository of code listings](https://github.com/CSSInDepth/css-in-depth-2)
+<img src='images/20250406043718.png' width='300'/>
 
-# Chapter 1
+[Repository of code listings](https://github.com/CSSInDepth/css-in-depth-2)
