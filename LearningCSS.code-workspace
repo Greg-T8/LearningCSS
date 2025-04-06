@@ -7,9 +7,6 @@
   "settings": {},
   "extensions": {
     "recommendations": [
-      "chris-towles.markdown-paste-image",
-      "esbenp.prettier-vscode",
-      "yzhang.markdown-all-in-one",
     ]
   }
 }
