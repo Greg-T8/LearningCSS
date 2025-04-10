@@ -44,3 +44,4 @@ Use `revert` when you want to override your previously set author styles but
 leave the user-agent styles in place. The `initial` and `unset` keywords
 essentially override all styles, both from author and user-agent stylesheets.
 
+See [styles.css](../ch1/1-inheritance/styles.css) for examples of these keywords.
