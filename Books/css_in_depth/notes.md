@@ -9,6 +9,8 @@
 
 <img src='images/20250410025548.png' width='350'/>
 
+## Chapter 1: Cascade, Spedificity, and Inheritance
+
 It is generally best to keep specificity low when you can, so when you need to
 overrride something, your options are open.
 
@@ -19,4 +21,18 @@ Rules of thumb for cascading:
 Both of these make it harder to override styles later. IDs are very specific,
 and `!important` is a hammer that can break things.
 
+### Special Values
 
+Use the `inherit` keyword to force a property to inherit from its parent. This
+is useful when you want to override a prperty when a cascaded value is
+preventing it.
+
+Use the `initial` keyword to set a property to its default value. This is useful
+when you want to have styles to undo. Every CSS property has an initial, or
+default, value. Assigning the `initial` keyword to a property will set it to its
+default value.
+
+Use the `unset` keyword to set a property value back to `inherit` if it is
+inheritable, and to `initial` if it is not. Using `unset` makes it a little
+simpler and helps you avoid using the wrong keyword&mdash;`inherit` or
+`initial`&mdash;for the property you are working with.
