@@ -36,3 +36,11 @@ Use the `unset` keyword to set a property value back to `inherit` if it is
 inheritable, and to `initial` if it is not. Using `unset` makes it a little
 simpler and helps you avoid using the wrong keyword&mdash;`inherit` or
 `initial`&mdash;for the property you are working with.
+
+When using `initial` and `unset`, it is important to understand the default
+property values.
+
+Use `revert` when you want to override your previously set author styles but
+leave the user-agent styles in place. The `initial` and `unset` keywords
+essentially override all styles, both from author and user-agent stylesheets.
+
