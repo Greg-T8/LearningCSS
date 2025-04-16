@@ -60,7 +60,7 @@ a.featured {
 
 /* Example of using special values  */
 .footer a {
-  color: inherit;
+  color: inherit; 
   background-color: unset;
   text-decoration: revert;
 }
