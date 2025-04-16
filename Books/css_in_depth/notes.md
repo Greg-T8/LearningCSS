@@ -31,4 +31,43 @@ When using `initial` and `unset`, it is important to understand the default prop
 
 Use `revert` when you want to override your previously set author styles but leave the user-agent styles in place. The `initial` and `unset` keywords essentially override all styles, both from author and user-agent stylesheets.
 
+These keywords are normal cascaded values, so it is possible to override them when another selector with higher specificity targets the same element.
+
 See [here](./ch01/1-inheritance/styles.css) for an example usage of these keywords.
+
+### Shorthand Properties
+- Shorthand properties enable you to set values of several properties at the same time.
+
+```css
+h1 {
+  font: 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+```
+- However, be careful with shorthand properties, as they can silently override other properties.
+- Avoid using font with shorthand properties because it sets a wide array of properties that can be silently overridden.
+- Some shorthand properties have ordering rules. Ordering goes from top, right, bottom, left.
+
+```css
+.nav a {
+  padding: 10px 15px 0 5px;
+}
+```
+
+- Specify three values, and the first value is for the top, the second value is for the right and left, and the third value is for the bottom.
+
+```css
+.nav a {
+  padding: 10px 15px 5px;
+}
+```
+
+- Specify two values, and the first value is for the top and bottom, and the second value is for the right and left.
+
+```css
+.nav a {
+  padding: 5px 10px;
+}
+```
+
+- In most cases, you'll see two values. For example buttons have a higher padding on the left and right (second value) than the top and bottom (first value).
+
