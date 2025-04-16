@@ -2,14 +2,15 @@
 
 <img src='images/20250406043718.png' width='300'/>
 
-**Resources**:
-- [Repository of code listings](https://github.com/CSSInDepth/css-in-depth-2)
+## Resources
+- [Repository of book code listings](https://github.com/CSSInDepth/css-in-depth-2)
+- [Can I use](https://caniuse.com/) - Check browser support for CSS features.
 
-**CSS Specificity**
+## Chapter 1: Cascade, Specificity, and Inheritance
+
+### CSS Specificity
 
 <img src='images/20250410025548.png' width='350'/>
-
-## Chapter 1: Cascade, Spedificity, and Inheritance
 
 It is generally best to keep specificity low when you can, so when you need to overrride something, your options are open.
 
@@ -80,4 +81,10 @@ h1 {
   box-shadow: 10px 2px #6f9090;
 }
 ```
-<img src='images/20250416044518.png' width='450'/>
+<img src='images/20250416044518.png' width='450'/>  
+
+- If you're working with a property that specifies two meaurements from a corner, think "Cartesian grid". If you're working with a property that specifies four measurements, think "clock".
+
+### Progressive Enhancement
+- Progressive enhancement enables you provide an acceptable (but less full-featured) experience to users with older browsers, while still providing a more advanced experience to users with modern browsers.
+- 
