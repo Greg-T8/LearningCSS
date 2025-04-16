@@ -70,4 +70,14 @@ h1 {
 ```
 
 - In most cases, you'll see two values. For example buttons have a higher padding on the left and right (second value) than the top and bottom (first value).
+- The top, right, bottom, left rule only applies for properties with four values.
+- Other properties, such as `background-position`, have two values, and in this case the first value is for the horizontal position and the second value is for the vertical position.
+- The reason for this is that two-value properties represent coordinates x and y on the Cartesian grid.
 
+```css
+.nav .featured {
+  background-color: orange;
+  box-shadow: 10px 2px #6f9090;
+}
+```
+<img src='images/20250416044518.png' width='450'/>
