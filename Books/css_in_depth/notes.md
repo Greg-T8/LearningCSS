@@ -86,5 +86,31 @@ h1 {
 - If you're working with a property that specifies two meaurements from a corner, think "Cartesian grid". If you're working with a property that specifies four measurements, think "clock".
 
 ### Progressive Enhancement
-- Progressive enhancement enables you provide an acceptable (but less full-featured) experience to users with older browsers, while still providing a more advanced experience to users with modern browsers.
-- 
+- Progressive enhancement lets you offer a basic experience for older browsers and advanced features for modern ones.
+- Visit [Can I use](https://caniuse.com/) to check browser support for CSS features.
+- Progressive enhancement is built into the cascade.
+```css
+aside {
+  background-color: #333333;      /* Default for all browsers */
+  background-color: #333333aa;    /* Adds semi-transparency for modern browsers */
+}
+```
+- Older browsers ignore the second rule. Modern browsers apply the second rule.
+
+- When a ruleset has multiple selectors, the browser will ignore the entire ruleset if any of the selectors are not supported.
+```css
+input.invalid,
+input:invalid {
+  border: 1px solid red;
+}
+```
+- In this case, if the browser doesn't support `:invalid`, it will ignore the entire rule. This is a problem because the first selector is supported by all browsers.
+- In this scenario, the best approach is to separate each selector into its own ruleset.
+```css
+input.invalid {
+  border: 1px solid red; /* All browsers */
+}
+input:invalid {
+  border: 1px solid red; /* Modern browsers */
+}
+```
