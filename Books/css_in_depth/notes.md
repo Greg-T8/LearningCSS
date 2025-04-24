@@ -8,6 +8,9 @@
 
 ## Chapter 1: Cascade, Specificity, and Inheritance
 
+<details>
+<summary>Click to expand</summary>
+
 ### CSS Specificity
 
 <img src='images/20250410025548.png' width='350'/>
@@ -97,6 +100,7 @@ aside {
 ```
 - Older browsers ignore the second rule. Modern browsers apply the second rule.
 
+#### Progressively enhancing selectors
 - When a ruleset has multiple selectors, the browser will ignore the entire ruleset if any of the selectors are not supported.
 ```css
 input.invalid,
@@ -114,3 +118,47 @@ input:invalid {
   border: 1px solid red; /* Modern browsers */
 }
 ```
+#### Feature queries using `@supports`
+- Use feature queries to specify multiple declarations for broswers that support a feature compared to those that do not.
+```css
+@supports(display: grid) {...}
+```
+- If the browser supports grid, it applies any rulesets inside the braces; otherwise, it ignores them.
+```css
+.coffees {
+  margin: 20px 0;
+}
+
+.coffees a {
+  display: inline-block;
+  min-width: 300px;
+  padding: 10px 15px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  color: black;
+  background-color: transparent;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+@supports (display:grid) {
+  .coffees {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+  .coffees a {
+    margin: unset;
+    min-width: unset;
+  }
+```
+- The fallback and other basic styles, e.g. colors, are outside the feature query, so they'll apply in all browsers.
+- See [here](./ch01/3-feature_queries/styles.css) for an example usage of feature queries.
+
+- Feature queries may be constructed in a few other ways:
+  - `@supports not (<declaration>)` - This will apply the ruleset if the browser does not support the feature.
+  - `@supports (<declaration>) and (<declaration>)` - This will apply the ruleset if the browser supports both features.
+  - `@supports (<declaration>) or (<declaration>)` - This will apply the ruleset if the browser supports either feature.
+  - `@supports (<selector>)` - This will apply the ruleset if the browser supports the selector.
+
+</details>
