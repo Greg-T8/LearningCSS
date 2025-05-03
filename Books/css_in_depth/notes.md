@@ -275,7 +275,7 @@ ul {
 
 Each list has a font size of 0.8em, which is 80% of the font size of the parent element.
 
-**Solution:** Target all unordered lists within an unordered list and set the font size to 1em. This will make the font size of the nested list equal to the font size of the parent list.
+**Possible Solution:** Target all unordered lists within an unordered list and set the font size to 1em. This will make the font size of the nested list equal to the font size of the parent list.
 
 ```css
 body {
@@ -287,7 +287,30 @@ ul {
 }
 
 ul ul {
-  font-size: 1em;
+  font-size: 1em;   /* targets only nested lists */
 }
 ```
+<img src='images/20250503055739.png' width='400'/>
 
+This solution works, but it is not ideal because you're setting a value and then overriding it with another rule. The better option is to use *rems*.
+
+#### Using rems for font size
+
+In the Document Object Model (DOM), the <html> element is the root node. The root node has a special pseudo-class selectors called `:root` that you can use:
+
+Rem is short for "root em". Instead of being relative to the current element, rems are relative to the root element. This means that rems are not affected by the font size of the parent element.
+
+```css
+:root {               /* This pseudo-class selector targets the <html> element */
+  font-size: 1em;
+}
+
+ul {
+  font-size: 0.8rem;  /* Uses the browser's default font size of 16px */
+}
+```
+<img src='images/20250503063414.png' width='400'/>
+
+> Author's recommendation: Use rems for font sizes, pixels for borders, and ems or rems for most other measures, especially paddings, margins, and border-radius.
+
+### 2.3 Stop thinking in pixels
