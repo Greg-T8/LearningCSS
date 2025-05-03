@@ -6,4 +6,4 @@ This is my learning space for the CSS programming language.
 ![GitHub last commit](https://img.shields.io/github/last-commit/Greg-T8/LearningCSS)
 
 ## Book Notes
-- [CSS in Depth](./Books/css_in_depth/notes.md)
+- [CSS in Depth](./Books/css_in_depth/notes.md) - Keith J. Grant

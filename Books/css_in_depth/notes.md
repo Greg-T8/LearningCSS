@@ -1,4 +1,4 @@
-# Notes from CSS in Depth
+# Notes from CSS in Depth - by Keith J. Grant
 
 <img src='images/20250406043718.png' width='300'/>
 
