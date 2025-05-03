@@ -2,14 +2,18 @@
 
 <img src='images/20250406043718.png' width='300'/>
 
-## Resources
+<details>
+<summary>Book Resources</summary>
+
 - [Repository of book code listings](https://github.com/CSSInDepth/css-in-depth-2)
 - [Can I use](https://caniuse.com/) - Check browser support for CSS features.
+
+</details>
 
 ## Chapter 1: Cascade, Specificity, and Inheritance
 
 <details open>
-<summary>Click to expand</summary>
+<summary>Details</summary>
 
 ### CSS Specificity
 
@@ -23,7 +27,7 @@ Rules of thumb for cascading:
 
 Both of these make it harder to override styles later. IDs are very specific, and `!important` is a hammer that can break things.
 
-### Special Values  
+### 1.3 Special Values  
 
 Use the `inherit` keyword to force a property to inherit from its parent. This is useful when you want to override a property when a cascaded value is preventing it.
 
@@ -39,7 +43,7 @@ These keywords are normal cascaded values, so it is possible to override them wh
 
 See [here](./ch01/1-inheritance/styles.css) for an example usage of these keywords.
 
-### Shorthand Properties
+### 1.4 Shorthand Properties
 - Shorthand properties enable you to set values of several properties at the same time.
 
 ```css
@@ -88,7 +92,7 @@ h1 {
 
 - If you're working with a property that specifies two meaurements from a corner, think "Cartesian grid". If you're working with a property that specifies four measurements, think "clock".
 
-### Progressive Enhancement
+### 1.5 Progressive Enhancement
 - Progressive enhancement lets you offer a basic experience for older browsers and advanced features for modern ones.
 - Visit [Can I use](https://caniuse.com/) to check browser support for CSS features.
 - Progressive enhancement is built into the cascade.
@@ -162,3 +166,56 @@ input:invalid {
   - `@supports (<selector>)` - This will apply the ruleset if the browser supports the selector.
 
 </details>
+
+## Chapter 2: Working with Relative Units
+
+**Length**: a formal name for a CSS value that deontes a distance measurement. 
+
+### 2.1 The Power of Relative Units
+
+CSS supports several absolute lengths:
+- `px` - pixels
+- `cm` - centimeters
+- `mm` - millimeters
+- `Q` - quarter millimeters
+- `in` - inches
+- `pt` - points (1/72 of an inch)
+- `pc` - picas (1/6 of an inch)
+
+Pixel is slightly misleading because a CSS pixel does not strictly equate to a monitor's pixel. This is notably in the case of high-DPI displays, where a CSS pixel is larger than a monitor pixel. This is because the browser scales the CSS pixel to fit the display.
+
+**Responsive design**: refers to styles that "respond" differently based on the size of the browser window. This is typically done using relative units, such as percentages, `em`, and `rem`.
+
+*Ems*, the most common relative unit, are measured in typography, referring to a specific font size.
+```css
+.padded {
+  font-size: 16px;
+  padding: 1em; /* 16px */
+}
+.padded {
+  font-size: 16px;
+  padding: 2em; /* 32px */
+}
+```
+  - 1 em means the font size of the current element; it's exact value varies depending on the element you're applying it to.
+  - IMPORTANT: Values declared using relative units are evaluated by the browser to an absolute value, called the **computed value**. 
+  - Using ems are convenient when setting properties like padding, height, or border-radius, because these scale evenly with the element if it inherits different font sizes or if the user changes font settings.
+
+A powerful feature of ems allows you to define the size of an element and then scale the entire thing up or down with a single declaration that changes the font size:
+
+```css
+.box {
+  padding: 1em;
+  border-radius: 1em;
+  background-color: lightgray;
+}
+
+.box-small {
+  font-size: 12px;
+}
+
+.box-large {
+  font-size: 18px;   /* Changes the size of the entire box */
+}
+```
+<img src='images/20250503051321.png' width='450'/>
