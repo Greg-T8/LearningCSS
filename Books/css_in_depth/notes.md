@@ -8,7 +8,7 @@
 
 ## Chapter 1: Cascade, Specificity, and Inheritance
 
-<details>
+<details open>
 <summary>Click to expand</summary>
 
 ### CSS Specificity
