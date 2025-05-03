@@ -1,13 +1,11 @@
-.box {
-  padding: 1em;
-  border-radius: 1em;
-  background-color: lightgray;
+body {
+  font-size: 16px;
 }
 
-.box-small {
-  font-size: 12px;
+ul {
+  font-size: 0.8em;
 }
 
-.box-large {
-  font-size: 18px;
+ul ul {
+  font-size: 1em;
 }

@@ -186,6 +186,8 @@ Pixel is slightly misleading because a CSS pixel does not strictly equate to a m
 
 **Responsive design**: refers to styles that "respond" differently based on the size of the browser window. This is typically done using relative units, such as percentages, `em`, and `rem`.
 
+### 2.2 Ems and rems
+
 *Ems*, the most common relative unit, are measured in typography, referring to a specific font size.
 ```css
 .padded {
@@ -218,4 +220,74 @@ A powerful feature of ems allows you to define the size of an element and then s
   font-size: 18px;   /* Changes the size of the entire box */
 }
 ```
-<img src='images/20250503051321.png' width='450'/>
+<img src='images/20250503051321.png' width='350'/>
+
+#### 2.2.1 Using ems to define font-size
+
+With regard to ems, the font-size property is a special case. Since an ems is defined by the current element's font size, the font-size property is derived from the inherited font size.
+
+```css
+body {
+  font-size: 16px;
+}
+
+.slogan {
+  font-size: 1.2em; /* Calculated size: 1.2 * 16px = 19.2px */
+}
+```
+<img src='images/20250503054014.png' width='350'/>
+
+> For most browsers, the default font size is 16px. This means that 1em is equal to 16px.
+
+#### Ems for font size together with other properties
+
+What makes ems tricky is when you use them for font size together with other properties. When you do this, the browser calculates the font size first, and then it uses that value to calculate the other values.
+
+Both properties can have the same declared value but different computed values:
+
+```css
+body {
+  font-size: 16px;
+}
+
+.slogan {
+  font-size: 1.2em;       /* 1.2 * 16px = 19.2px */
+  padding: 1.2em;         /* 1.2 * 19.2px = 23.04px */
+  background-color: #ccc;
+}
+```
+<img src='images/20250503054940.png' width='400'/>
+
+#### The shrinking font problem
+
+Ems can produce unexpected results when you use them to specify the font sizes of multiple nested elements.
+
+```css
+body {
+  font-size: 16px;
+}
+
+ul {
+  font-size: 0.8em;
+}
+```
+<img src='images/20250503055338.png' width='400'/>
+
+Each list has a font size of 0.8em, which is 80% of the font size of the parent element.
+
+**Solution:** Target all unordered lists within an unordered list and set the font size to 1em. This will make the font size of the nested list equal to the font size of the parent list.
+
+```css
+body {
+  font-size: 16px;
+}
+
+ul {
+  font-size: 0.8em;
+}
+
+ul ul {
+  font-size: 1em;
+}
+```
+
