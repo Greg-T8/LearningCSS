@@ -1,6 +1,23 @@
+/* Applies to all screens but is overridden for larger screens */
+/* Use a small default font size for smaller screens */
 :root{
-  font-size: 0.875em; /* 14px */
+  font-size: 0.85em; /* 1em = 16px, so 0.85em = 13.6px */
 }
+
+/* Applies only to screens 800px and wider, overriding the original value */
+@media (min-width: 800px) {
+  :root {
+    font-size: 1em; /* 1em = 16px */
+  }
+}
+
+/* Applies only to screens 1200px and wider, overriding both values original  */
+@media (min-width: 1200px) {
+  :root {
+    font-size: 1.15em; /* 1.15em = 18.4px */
+  }
+}
+
 
 .panel {
   padding: 1em;

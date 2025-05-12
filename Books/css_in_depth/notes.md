@@ -29,6 +29,7 @@
     - [Using rems for font size](#using-rems-for-font-size)
   - [2.3 Stop thinking in pixels](#23-stop-thinking-in-pixels)
     - [2.3.1 Setting a sane default font size](#231-setting-a-sane-default-font-size)
+    - [2.3.2 Making the panel responsive](#232-making-the-panel-responsive)
 
 ## Chapter 1: Cascade, Specificity, and Inheritance
 
@@ -354,7 +355,7 @@ The following code sets a default font size of 14px. This value must be obtained
 **Goal:** Build a panel like below using relative units and an inherited font size:  
 <img src='images/1747038504998.png' width='550'/>
 
-The markup to be used:
+The markup: 
 
 ```html
 <div class="panel">
@@ -366,7 +367,7 @@ The markup to be used:
   </div>
 </div
 ```
-The CSS to be used:
+The CSS:
 
 ```css
 :root{
@@ -387,4 +388,46 @@ The CSS to be used:
 }
 ```
 
+#### 2.3.2 Making the panel responsive
 
+Using media queries to change the base font size, depending on the screen size. A media query uses an `@media` rule to specify styles that will be applied only to certain screen sizes or media types.
+
+Goal:  
+<img src='images/1747039789344.png' width='650'/>
+
+```css
+:root{
+  font-size: 0.85em; /* 1em = 16px, so 0.85em = 13.6px */
+}
+
+/* Applies only to screens 800px and wider, overriding the original value */
+@media (min-width: 800px) {
+  :root {
+    font-size: 1em; /* 1em = 16px */
+  }
+}
+
+/* Applies only to screens 1200px and wider, overriding both values original  */
+@media (min-width: 1200px) {
+  :root {
+    font-size: 1.15em; /* 1.15em = 18.4px */
+  }
+}
+
+
+.panel {
+  padding: 1em;
+  border-radius: 0.5em;
+  border: 1px solid #999;
+}
+
+.panel > h2 { /* Descendant combinator applies styles to all h2 elements inside .panel */
+  margin-top: 0;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+```
+These two media queries can eliminate the need for dozens of media queries throughout the rest of your CSS. But it doesn't work if you define your values in pixels: you need to use relative units. 
+
+# 2.3.3 Resizing a single component
