@@ -10,10 +10,27 @@
 
 </details>
 
-## Chapter 1: Cascade, Specificity, and Inheritance
+<!-- omit in toc -->
+## Contents
 
-<details open>
-<summary>Details</summary>
+- [Chapter 1: Cascade, Specificity, and Inheritance](#chapter-1-cascade-specificity-and-inheritance)
+  - [CSS Specificity](#css-specificity)
+  - [1.3 Special Values](#13-special-values)
+  - [1.4 Shorthand Properties](#14-shorthand-properties)
+  - [1.5 Progressive Enhancement](#15-progressive-enhancement)
+    - [Progressively enhancing selectors](#progressively-enhancing-selectors)
+    - [Feature queries using `@supports`](#feature-queries-using-supports)
+- [Chapter 2: Working with Relative Units](#chapter-2-working-with-relative-units)
+  - [2.1 The Power of Relative Units](#21-the-power-of-relative-units)
+  - [2.2 Ems and rems](#22-ems-and-rems)
+    - [2.2.1 Using ems to define font-size](#221-using-ems-to-define-font-size)
+    - [Ems for font size together with other properties](#ems-for-font-size-together-with-other-properties)
+    - [The shrinking font problem](#the-shrinking-font-problem)
+    - [Using rems for font size](#using-rems-for-font-size)
+  - [2.3 Stop thinking in pixels](#23-stop-thinking-in-pixels)
+    - [2.3.1 Setting a sane default font size](#231-setting-a-sane-default-font-size)
+
+## Chapter 1: Cascade, Specificity, and Inheritance
 
 ### CSS Specificity
 
@@ -165,7 +182,6 @@ input:invalid {
   - `@supports (<declaration>) or (<declaration>)` - This will apply the ruleset if the browser supports either feature.
   - `@supports (<selector>)` - This will apply the ruleset if the browser supports the selector.
 
-</details>
 
 ## Chapter 2: Working with Relative Units
 
@@ -314,3 +330,59 @@ ul {
 > Author's recommendation: Use rems for font sizes, pixels for borders, and ems or rems for most other measures, especially paddings, margins, and border-radius.
 
 ### 2.3 Stop thinking in pixels
+
+The following pattern is a common antipattern in CSS:
+
+```css
+html {
+  font-size: 0.625em;   /* Scales browser's default font size of 16px to 10px, making it easier to simplify math */
+}
+```
+The author does not recommend this approach because (1) it forces you to write a lot of duplicate styles, and (2) you might type 1.6 rem into your code, but in your mind, you're thinking 16px. 
+
+Instead, the author recommends you geting in the habit of using ems first.
+
+#### 2.3.1 Setting a sane default font size
+
+The following code sets a default font size of 14px. This value must be obtained by dividing by the browser's default font size of 16px (14px / 16px = 0.875em):
+
+```css
+:root {                   /* Target the HTML selector */
+  font-size: 0.875em;     /* 14/16 (desired px / inherited px) equals 0.875em */
+}
+```
+**Goal:** Build a panel like below using relative units and an inherited font size:  
+<img src='images/1747038504998.png' width='550'/>
+
+The markup to be used:
+
+```html
+<div class="panel">
+  <h2>Single-origin</h2>
+  <div class="panel-body">
+    We have build partnerships with small farms around the world to
+    hand-select beans at the peak of the season. We then carefully roast
+    in <a href="/batch-size">small batches</a> to maximize their potential.
+  </div>
+</div
+```
+The CSS to be used:
+
+```css
+:root{
+  font-size: 0.875em; /* 14px */
+}
+
+.panel { 
+  padding: 1em;
+  border-radius: 0.5em;
+  border: 1px solid #999; /* Puts a thin border around the element. #999 is shorthand for #999999 */
+}
+
+.panel > h2 { /* Descendant combinator applies styles to all h2 elements inside .panel */
+  margin-top: 0;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+```
