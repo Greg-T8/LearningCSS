@@ -1,0 +1,16 @@
+:root{
+  font-size: 0.875em; /* 14px */
+}
+
+.panel {
+  padding: 1em;
+  border-radius: 0.5em;
+  border: 1px solid #999;
+}
+
+.panel > h2 { /* Descendant combinator applies styles to all h2 elements inside .panel */
+  margin-top: 0;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
