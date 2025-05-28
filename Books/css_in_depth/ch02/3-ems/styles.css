@@ -1,0 +1,17 @@
+.panel {
+  font-size: 1.0rem;    /* Establishes a predictable font size for the panel */
+  padding: 1em;
+  border: 1px solid #999;
+  border-radius: 0.5em;
+}
+
+.panel > h2 {
+  margin-top: 0;
+  font-size: 0.8em;   /* Uses ems to make other fonts relative to the established parent font size */
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.panel.large {      /* Compound selector targets elements with both .panel and .large classes */
+  font-size: 1.2rem;
+}

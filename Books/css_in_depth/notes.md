@@ -30,6 +30,7 @@
   - [2.3 Stop thinking in pixels](#23-stop-thinking-in-pixels)
     - [2.3.1 Setting a sane default font size](#231-setting-a-sane-default-font-size)
     - [2.3.2 Making the panel responsive](#232-making-the-panel-responsive)
+    - [2.3.3 Resizing a single component](#233-resizing-a-single-component)
 
 ## Chapter 1: Cascade, Specificity, and Inheritance
 
@@ -430,4 +431,51 @@ Goal:
 ```
 These two media queries can eliminate the need for dozens of media queries throughout the rest of your CSS. But it doesn't work if you define your values in pixels: you need to use relative units. 
 
-# 2.3.3 Resizing a single component
+#### 2.3.3 Resizing a single component
+
+You can use ems to scale an individual component on the page. You can do this by using relative units. However, in this case, you're adjusting what the units are relative to. With this approach, the only thing you have to do is override the parent element's rem font size to scale the entire component: 
+
+```css
+.panel {
+  font-size: 1.0rem;    /* Establishes a predictable font size for the panel */
+  padding: 1em;
+  border: 1px solid #999;
+  border-radius: 0.5em;
+}
+
+.panel > h2 {
+  margin-top: 0;
+  font-size: 0.8em;   /* Uses ems to make other fonts relative to the established parent font size */
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.panel.large {      /* Compound selector targets elements with both .panel and .large classes */
+  font-size: 1.2rem;
+}
+```
+**Note:** It only takes one declaration to resize the entire component.
+
+```html
+<div class="panel">
+  <h2>Single-origin</h2>
+  <div class="panel-body">
+    We have build partnerships with small farms around the world to
+    hand-select beans at the peak of the season. We then carefully roast
+    in <a href="/batch-size">small batches</a> to maximize their potential.
+  </div>
+</div>
+
+<br />
+
+<div class="panel large">   <!-- Add the large class to scale the component -->
+  <h2>Single-origin</h2>
+  <div class="panel-body">
+    We have build partnerships with small farms around the world to
+    hand-select beans at the peak of the season. We then carefully roast
+    in <a href="/batch-size">small batches</a> to maximize their potential.
+  </div>
+</div
+```
+<img src='images/20250528050031.png' width='500'/>
+
