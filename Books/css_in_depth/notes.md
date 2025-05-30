@@ -497,3 +497,22 @@ There are at least 24 viewport-relative units in CSS. Here are the four basice o
 The following example shows a square element that is defined with both a height and width of 90vmin, which equals 90% of the smaller of two dimensions&mdash;90% of the height on landscape screens or 90% of the width on portrait screens
 
 <img src="images/1748594672829.png" alt="alt text" width="450"/>
+
+```css
+.square {
+  width: 90vmin;
+  height: 90vmin;
+  background-color: #369;
+}
+```
+
+Viewport-relative lengths are great for things like making a full-screen hero image or a full-screen video background. Your image can be inside a container that is 100vw and 100vh, and the image will always fill the entire viewport.
+
+**Problem: Layout thrashing with vh units**  
+However, after developers started using these units to fill the viewport, we discovered a problem: on mobile devices, the viewport can change dynamically. In an attempt to maximize available screen size, mobile browers have a feature where some UX controls&mdash;the address bar at the top of the screen and the navigation buttons at the bottom&mdash;slide out of view as you scroll donwn the page. And they slide back into view when you scroll up.
+
+These dynamic changes cause a resize of the viewport, which in turn causes elements on the page using vh units to change size and content beneath them to jump around on the screen. This results in a poor user experience and has been called *layout thrashing*.
+
+In the end, most mobile browsers stopped this behavior by reinterpreting vh units based on the largest possible viewport size and ignoring the influence the address bar has on viewport size. 
+
+2.4.1 Selecting from the newer viewport units
