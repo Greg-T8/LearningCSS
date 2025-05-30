@@ -31,6 +31,7 @@
     - [2.3.1 Setting a sane default font size](#231-setting-a-sane-default-font-size)
     - [2.3.2 Making the panel responsive](#232-making-the-panel-responsive)
     - [2.3.3 Resizing a single component](#233-resizing-a-single-component)
+  - [2.4 Viewport-relative Units](#24-viewport-relative-units)
 
 ## Chapter 1: Cascade, Specificity, and Inheritance
 
@@ -450,7 +451,7 @@ You can use ems to scale an individual component on the page. You can do this by
   text-transform: uppercase;
 }
 
-.panel.large {      /* Compound selector targets elements with both .panel and .large classes */
+.panel.large {      /* Compound selector (no space between) targets elements with both .panel and .large classes */
   font-size: 1.2rem;
 }
 ```
@@ -479,3 +480,20 @@ You can use ems to scale an individual component on the page. You can do this by
 ```
 <img src='images/20250528050031.png' width='500'/>
 
+### 2.4 Viewport-relative Units
+
+While ems and rems are relative to the font size, viewport-relative units are relative to the browser's viewwport.
+
+The viewport is a framed aread in the browser window where the web page is visible. This excludes the browser's address bar, toolbars, and other UI elements.
+
+There are at least 24 viewport-relative units in CSS. Here are the four basice ones:
+- vh - One percent of viewport height
+- vw - One percent of viewport width
+- vmin - One percent of the smaller dimension, height or width
+- vmax - One percent of the larger dimension, height or width
+
+**Example:** 50vw is equal to half the width of the viewport, and 25vh equals 25% of the viewport's height.
+
+The following example shows a square element that is defined with both a height and width of 90vmin, which equals 90% of the smaller of two dimensions&mdash;90% of the height on landscape screens or 90% of the width on portrait screens
+
+<img src="images/1748594672829.png" alt="alt text" width="450"/>
