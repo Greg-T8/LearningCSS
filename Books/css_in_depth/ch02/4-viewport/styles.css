@@ -1,5 +1,9 @@
+:root {
+  font-size: clamp(0.9rem, 0.6rem + 0.5svw, 1.5rem);
+}
+
 .square {
-  width: 90vmin;
-  height: 90vmin;
+  width: 50vmin;
+  height: 1vmax;
   background-color: #369;
 }
