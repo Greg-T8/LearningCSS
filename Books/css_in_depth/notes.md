@@ -33,6 +33,9 @@
     - [2.3.3 Resizing a single component](#233-resizing-a-single-component)
   - [2.4 Viewport-relative Units](#24-viewport-relative-units)
     - [2.4.1 Selecting from the newer viewport units](#241-selecting-from-the-newer-viewport-units)
+    - [2.4.2 Using viewport units for font size](#242-using-viewport-units-for-font-size)
+      - [Getting responsive with the `calc()` function](#getting-responsive-with-the-calc-function)
+      - [Improving things with the `clamp()` function](#improving-things-with-the-clamp-function)
 
 ## Chapter 1: Cascade, Specificity, and Inheritance
 
@@ -507,6 +510,10 @@ The following example shows a square element that is defined with both a height 
 }
 ```
 
+```html
+<div class="square"></div>
+```
+
 Viewport-relative lengths are great for things like making a full-screen hero image or a full-screen video background. Your image can be inside a container that is 100vw and 100vh, and the image will always fill the entire viewport.
 
 **Problem: Layout thrashing with vh units**  
@@ -546,3 +553,37 @@ Use dynamic viewport units sparingly, as it can cause layout thrashing on mobile
 | **Inline/block**       | vi<br>vb                                 | lvi<br>lvb     | svi<br>svb     | dvi<br>dvb       |
 
 With so many viewport units available, the author prefers using small viewport units.
+
+#### 2.4.2 Using viewport units for font size
+
+Font size is one practical application for viewport-relative units.
+
+When applying `font-size: 2svw` to an element, the element scales smoothly as the viewport changes size; there are no sudden breakpoint changes.
+
+However, the resulting pixel sizes may be too large or too small for the user to read comfortably. To make this scaling less severe, you can use CSS's `calc()` or `clamp()` functions.
+
+##### Getting responsive with the `calc()` function
+
+The `calc()` function lets you do basic arithmetic with two or more values. It is useful for combining values that are measured in different units.
+
+```css
+:root {
+  font-size: calc(0.5em + 1svw);
+}
+```
+In this example, the `0.5em` operates as the minimum font size, and the `1svw` operates as the scaling factor.
+
+However, even with this approach it can be difficult to find something that works well without being too small or too large.
+
+##### Improving things with the `clamp()` function
+
+The `clamp()` function is a newer function for providing better control. It takes three arguments: a minimum value, a preferred value as an expression, and a maximum value. 
+
+```css
+:root {
+  font-size: clamp(0.9rem, 0.6rem + 0.5svw, 1.5rem);
+}
+```
+The benefit this provides is very large or very small viewports don't end up with text sizes outside of reasonable ranges.
+
+Also, given that your font size is now responsive, any other sizes on your page defined using ems or rems will scale responsively as well.
