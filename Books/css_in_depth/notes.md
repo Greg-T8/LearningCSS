@@ -32,6 +32,7 @@
     - [2.3.2 Making the panel responsive](#232-making-the-panel-responsive)
     - [2.3.3 Resizing a single component](#233-resizing-a-single-component)
   - [2.4 Viewport-relative Units](#24-viewport-relative-units)
+    - [2.4.1 Selecting from the newer viewport units](#241-selecting-from-the-newer-viewport-units)
 
 ## Chapter 1: Cascade, Specificity, and Inheritance
 
@@ -515,4 +516,33 @@ These dynamic changes cause a resize of the viewport, which in turn causes eleme
 
 In the end, most mobile browsers stopped this behavior by reinterpreting vh units based on the largest possible viewport size and ignoring the influence the address bar has on viewport size. 
 
-2.4.1 Selecting from the newer viewport units
+#### 2.4.1 Selecting from the newer viewport units
+
+To address layout thrashing, CSS introduced the concept of large and small viewports. The *large viewport* is the largest possible viewport  when all the browser's UX elements are hidden. The *small viewport* is the smallest possible viewport when all the UX elements are shown.
+
+<img src="images/1751531585091.png" alt="alt text" width="450"/>
+
+Large and small viewport units:
+- `lvw`, `lvh`, `lvmin`, `lvmax` - Large viewport units
+- `svw`, `svh`, `svmin`, `svmax` - Small viewport units
+
+Some concepts to keep in mind:
+- Viewport units do not take scrollbars into account. This means an element of 100svw will introduce horizontal scrolling when a vertical scrollbar is present.
+- The CSS specification does not dictate whether an onscreen keyboard should shrink the small viewport size. 
+- The original viewport units behave like large viewport units in most browsers, but this behavior is not guaranteed.
+
+So, how do we accommodate the case where we want the original behavior of viewport units, where they dynamically shift if/when the browser's UX elements change? For this, there is a third type of viewport unit called the *dynamic viewport unit*.
+
+Dynamic viewport units are denoted with a `d` prefix:
+- `dvw`, `dvh`, `dvmin`, `dvmax` - Dynamic viewport units
+
+Use dynamic viewport units sparingly, as it can cause layout thrashing on mobile devices.
+
+
+|                        | Unspecified viewport<br>(original units) | Large viewport | Small viewport | Dynamic viewport |
+|------------------------|:----------------------------------------:|:--------------:|:--------------:|:----------------:|
+| **Width/height**       | vw<br>vh                                 | lvw<br>lvh     | svw<br>svh     | dvw<br>dvh       |
+| **Min/max**            | vmin<br>vmax                             | lvmin<br>lvmax | svmin<br>svmax | dvmin<br>dvmax   |
+| **Inline/block**       | vi<br>vb                                 | lvi<br>lvb     | svi<br>svb     | dvi<br>dvb       |
+
+With so many viewport units available, the author prefers using small viewport units.
